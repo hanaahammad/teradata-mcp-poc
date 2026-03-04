@@ -1,0 +1,31 @@
+# ─────────────────────────────────────────────────────────────
+# Teradata MCP PoC — Connection Configuration EXAMPLE
+# ─────────────────────────────────────────────────────────────
+# 1. Copy this file:  cp config.example.yaml config.yaml
+# 2. Fill in your Teradata credentials
+# 3. config.yaml is gitignored — safe to add real values
+# ─────────────────────────────────────────────────────────────
+
+teradata:
+  host:     "your-host.clearscape.teradata.com"
+  user:     "your-username"
+  password: "your-password"
+  database: ""
+
+mcp:
+  max_rows:       500
+  max_iterations: 100
+  k_min:          2
+  k_max:          10
+
+experiment:
+  database:    "demo_user"
+  output_dir:  "./results"
+  tables:
+    rfm:       "segmentation_rfm_scaled"
+    full:      "segmentation_full_scaled"
+    risk:      "segmentation_rfm_risk_scaled"
+  features:
+    rfm:       ["monetary_scaled", "frequency_scaled", "recency_scaled"]
+    risk:      ["monetary_scaled", "frequency_scaled", "recency_scaled", "credit_score_scaled"]
+    full:      ["monetary_scaled", "frequency_scaled", "recency_scaled", "credit_score_scaled", "age_scaled", "income_scaled"]
